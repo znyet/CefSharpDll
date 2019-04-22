@@ -1,0 +1,64 @@
+https://sourceforge.net/projects/cefsharp/files/CefSharp-1.25.0.7z/download
+https://sourceforge.net/projects/cefsharp/files/
+https://sourceforge.net/projects/cefsharp/
+
+https://github.com/ataranto/CefSharp
+https://github.com/cefsharp/CefSharp
+
+https://github.com/cefsharp/CefSharp/wiki/Quick-Start
+
+https://github.com/cefsharp/CefSharp/wiki/CefSharp%E4%B8%AD%E6%96%87%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3
+
+https://github.com/cefsharp/CefSharp.MinimalExample/
+
+====================================================
+1、首先项目CPU改成X86模式
+
+2、App.Config
+<?xml version="1.0"?>
+<configuration>
+  <startup  useLegacyV2RuntimeActivationPolicy="true">
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+</configuration>
+
+3、
+//Settings setting = new Settings();
+//CEF.Initialize(setting);
+
+WebView webview = new WebView();
+webview.Address = "https://www.taobao.com";
+webview.Dock = DockStyle.Fill;
+
+this.Controls.Add(webview);
+
+------------------------------------------------------
+webview.ExecuteScript("document.body.innerHTML='靠'");//运行JavaScript
+
+http://www.lxway.com/12442806.htm
+
+--------------------------------------------------------
+public class CallbackObjectForJs  //添加一个类，方法名必须小写
+    {
+        public void showMessage(string msg)
+        {
+            MessageBox.Show(msg);
+        }
+    }
+
+WebView.RegisterJsObject("callbackObj", new CallbackObjectForJs()); //注册
+	
+<script type="text/javascript">  //页面执行js，进行调用
+        function callback()
+        {
+            callbackObj.showMessage('message from js');
+        }
+</script>
+
+-----------------------------------------------------------把jquery填充进去
+StreamReader sr = new StreamReader(@"E:\项目\liuliang\liuliang\jquery.js");
+string ss = sr.ReadToEnd();
+sr.Dispose();
+
+object txt = webview.EvaluateScript("function Add(){var ss=" + ss + ";var script = document.createElement('script');script.text=ss;document.body.appendChild(script);return 1};Add()");
+webview.ExecuteScript("alert($('body').append('彩瓷爱财慈爱慈爱慈爱慈爱'))");

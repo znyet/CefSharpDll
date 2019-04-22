@@ -1,0 +1,10 @@
+1、项目引用 CefSharp.dll CefSharp.WinForms.dll
+
+2、拷贝下面文件到bin目录
+locales文件夹
+devtools_resources.pak
+libcef.dll
+icudt.dll 
+
+3、当窗体关闭的时候 释放cef
+CefSharp.CEF.Shutdown();
