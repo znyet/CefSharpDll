@@ -1,0 +1,50 @@
+最小化
+
+Lib
+CefSharp.BrowserSubprocess.exe
+CefSharp.BrowserSubprocess.Core.dll
+CefSharp.Core.dll
+CefSharp.dll
+CefSharp.WinForms.dll
+
+COM
+libcef.dll
+icudtl.dat
+natives_blob.bin
+cef.pak
+
+locales 文件夹
+
+===============================================================
+
+namespace TestCefSharp2
+{
+    public partial class Form1 : Form
+    {
+        public ChromiumWebBrowser browser;
+
+        public Form1()
+        {
+            InitializeComponent();
+
+            Cef.Initialize(new CefSettings());
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            browser = new ChromiumWebBrowser("http://localhost:2224/Device/Index");
+            this.Controls.Add(browser);
+            browser.Dock = DockStyle.Fill;
+            
+        }
+
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Cef.Shutdown();
+        }
+
+
+    }
+}
