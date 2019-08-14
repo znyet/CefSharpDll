@@ -2,7 +2,6 @@
 
 2、拷贝下面文件到bin目录
 locales文件夹
-devtools_resources.pak
 libcef.dll
 icudt.dll 
 
